@@ -1,14 +1,19 @@
 #!/usr/bin/env python
 
 
-"""Ridiculous little tool for checking whether a Quake Live
-nickname is available or not.
+"""
+   Ridiculous little tool for checking whether a Quake Live
+   nickname is available or not.
 """
 
 
-import requests
 import sys
-from blessings import Terminal
+
+try:
+    import requests
+    from blessings import Terminal
+except ImportError:
+    sys.exit("Module doesn't exist. Install via: $pip install <module-name>")
 
 
 TERM = Terminal()
@@ -16,7 +21,7 @@ TERM = Terminal()
 
 def check_name(args):
     """Grabs a list of names to check availability for and returns
-    the result.
+       the result.
     """
     server = "http://www.quakelive.com/register/verify/nametag"
     headers = {'content-type': 'application/x-www-form-urlencoded',
