@@ -12,8 +12,8 @@ import sys
 try:
     import requests
     from blessings import Terminal
-except ImportError:
-    sys.exit("Module doesn't exist. Install via: $pip install <module-name>")
+except ImportError as an_error:
+    sys.exit(str(an_error) + "\nInstall via: $pip install <module-name>")
 
 
 TERM = Terminal()
