@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# Update all git directories below the current directory
+# Based on: http://mikeslinn.blogspot.com.au/2012/07/bash-script-to-update-all-git_20.html
+# With some tweaks of mine
+
+ESC_SEQ="\x1b["
+HIGHLIGHT=$ESC_SEQ"33;01m"
+NORMAL=$ESC_SEQ"39;49;00m"
+
+for d in *; do
+  if [ -d "$d" ] && [ -d "$d/.git" ]; then
+    cd $d > /dev/null
+    echo -e "\n${HIGHLIGHT}Updating $d$NORMAL"
+    git pull
+    # removes untracked files and directories from the specified path
+    # git clean -fxd
+    cd - > /dev/null
+  elif [ -d "$d" ] && [ -d "$d/.svn" ]; then
+    cd $d > /dev/null
+    echo -e "\n${HIGHLIGHT}Updating $d$NORMAL"
+    svn update
+    cd - > /dev/null
+  fi
+done

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Fixes duplicate entries in your Mac's Open With menu. I used to have multiple entries of Sublime Text 2 for some reason and this fixes this issue
+
+/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user
