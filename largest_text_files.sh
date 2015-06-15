@@ -4,5 +4,5 @@
 # and .hg folders
 
 find . -type f -not -iwholename '*.git*' -not -iwholename '*.svn*' \
--exec file {} \; | grep text | cut -d: -f1 | xargs ls -s | \
-sort -n -r | head -15
+-not -iwholename '*.hg' -exec file {} \; | grep text | cut -d: -f1 \
+| xargs ls -s | sort -n -r | head -15
