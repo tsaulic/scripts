@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+#
+# vim: set ft=ruby
+#
+
+require 'socket'
+
+$stdout.sync = true
+
+s = UDPSocket.new
+s.bind(nil, 8125)
+while blob = s.recvfrom(1024)
+  metric, value = blob.first.split(':')
+  puts "StatsD Metric: #{metric} #{value}"
+end

@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+set -e
+
+echo "Pulling latest code..."
+git pull
+echo "Deleting local branches that were removed in remote..."
+git fetch -p 
+git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -D
+echo "Remaining local branches:"
+git branch -vv
+echo "Done."
